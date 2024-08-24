@@ -29,11 +29,7 @@ export class ProductsController {
 
   // @Patch(':id')
   @MessagePattern({ cmd: ProductTCP.UPDATE })
-  update(
-    // @Param('id', ParseIntPipe) id: string,
-    // @Body() updateProductDto: UpdateProductDto,
-    @Payload() updateProductDto: UpdateProductDto,
-  ) {
+  update(@Payload() updateProductDto: UpdateProductDto) {
     return this.productsService.update(updateProductDto.id, updateProductDto);
   }
 
