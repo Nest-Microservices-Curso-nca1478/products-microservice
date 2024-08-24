@@ -12,7 +12,10 @@ async function bootstrap() {
     {
       transport: Transport.TCP,
       options: {
+        host: envs.host,
         port: envs.port,
+        retryAttempts: envs.retryAttempts || 5,
+        retryDelay: envs.retryDelay || 3000,
       },
     },
   );
