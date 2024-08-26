@@ -4,4 +4,5 @@ export enum ProductTCP {
   FIND_ONE = 'find_one_product',
   UPDATE = 'update_product',
   DELETE = 'delete_product',
+  VALIDATE = 'validate_products',
 }
