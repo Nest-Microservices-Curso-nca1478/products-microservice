@@ -5,8 +5,6 @@ interface EnvVars {
   PORT: number;
   DATABASE_URL: string;
   HOST: string;
-  RETRYATTEMPTS: number;
-  RETRYDELAY: number;
   NATS_SERVERS: string[];
 }
 
@@ -15,8 +13,6 @@ const envsSchema = joi
     PORT: joi.number().required(),
     DATABASE_URL: joi.string().required(),
     HOST: joi.string().required(),
-    RETRYATTEMPTS: joi.number(),
-    RETRYDELAY: joi.number(),
     NATS_SERVERS: joi.array().items(joi.string()).required(),
   })
   .unknown(true);
@@ -36,7 +32,5 @@ export const envs = {
   port: envVars.PORT,
   databaseUrl: envVars.DATABASE_URL,
   host: envVars.HOST,
-  retryAttempts: envVars.RETRYATTEMPTS,
-  retryDelay: envVars.RETRYDELAY,
   natsServers: envVars.NATS_SERVERS,
 };
