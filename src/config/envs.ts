@@ -7,6 +7,7 @@ interface EnvVars {
   HOST: string;
   RETRYATTEMPTS: number;
   RETRYDELAY: number;
+  NATS_SERVERS: string[];
 }
 
 const envsSchema = joi
@@ -16,10 +17,14 @@ const envsSchema = joi
     HOST: joi.string().required(),
     RETRYATTEMPTS: joi.number(),
     RETRYDELAY: joi.number(),
+    NATS_SERVERS: joi.array().items(joi.string()).required(),
   })
   .unknown(true);
 
-const { error, value } = envsSchema.validate(process.env);
+const { error, value } = envsSchema.validate({
+  ...process.env,
+  NATS_SERVERS: process.env.NATS_SERVERS?.split(','),
+});
 
 if (error) {
   throw new Error(`Config validation error: ${error.message}`);
@@ -33,4 +38,5 @@ export const envs = {
   host: envVars.HOST,
   retryAttempts: envVars.RETRYATTEMPTS,
   retryDelay: envVars.RETRYDELAY,
+  natsServers: envVars.NATS_SERVERS,
 };
