@@ -11,9 +11,9 @@ WORKDIR /usr/src/app
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY . .
 # RUN npm run test
+RUN npx prisma generate
 RUN npm run build
 RUN npm ci -f --only=production && npm cache clean --force
-RUN npx prisma generate
 
 # Imagen Final
 FROM node:21-alpine3.19 AS prod
