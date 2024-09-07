@@ -2,8 +2,6 @@
 /dist
 /node_modules
 /build
-dev.db
-dev.db-journal
 
 # Logs
 logs
